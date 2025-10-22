@@ -15,7 +15,7 @@ class Table {
     JFrame frame;
     JTable table;
 
-    Table(List<String> common_lexeme_list, Toxenizer t) {
+    Table(List<String> common_lexeme_list, Tokenizer t) {
         frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,7 +54,7 @@ class Table {
     }
 }
 
-public class Toxenizer {
+public class Tokenizer {
 
     private enum State {
         START,
@@ -76,7 +76,7 @@ public class Toxenizer {
     private final List<String> keyword_lexemes;
     private final List<String> delimiter_lexemes;
 
-    public Toxenizer() {
+    public Tokenizer() {
         keywords = get_from_sql("SELECT * FROM JavaKeywords");
         operators = get_from_sql("SELECT * FROM JavaOperators");
         separators = get_from_sql("SELECT * FROM JavaSeparators");
@@ -358,7 +358,7 @@ public class Toxenizer {
     public static void main(String[] args) {
         String path_name = "C:\\Users\\yusuf\\OneDrive\\Desktop\\Yazılım\\Java\\örnek_kod.txt";
         File file = new File(path_name);
-        Toxenizer t = new Toxenizer();
+        Tokenizer t = new Tokenizer();
         String code = t.code(file);
 
         String single_comment_cleaned_code = t.single_comment_cleaner(code);
